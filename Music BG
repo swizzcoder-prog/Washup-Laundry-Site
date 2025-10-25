@@ -1,0 +1,31 @@
+    <script>
+      const audio = document.getElementById('bg-music');
+      const volumeSlider = document.getElementById('volume-slider');
+      const muteButton = document.getElementById('mute-button');
+
+      const savedVolume = localStorage.getItem('bgMusicVolume');
+      const savedMuted = localStorage.getItem('bgMusicMuted');
+
+      audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 1;
+      volumeSlider.value = audio.volume;
+
+      audio.muted = savedMuted === 'true';
+      muteButton.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+
+      window.addEventListener('DOMContentLoaded', () => {
+        document.body.addEventListener('click', () => {
+          audio.play().catch(e => console.log("Autoplay blocked:", e));
+        }, { once: true });
+      });
+
+      volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+        localStorage.setItem('bgMusicVolume', volumeSlider.value);
+      });
+
+      muteButton.addEventListener('click', () => {
+        audio.muted = !audio.muted;
+        localStorage.setItem('bgMusicMuted', audio.muted);
+        muteButton.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+      });
+    </script>
