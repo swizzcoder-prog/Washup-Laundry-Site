@@ -1,0 +1,160 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wash-Up Laundry: Easy-access, affordable, and quality laundry services in your neighborhood. We offer wash & dry, folding, ironing, and pick-up/delivery.">
+    <title>Wash-Up Laundry</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Remove inline style -->
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+      <img src="Laundrylogo.png" alt="Wash-Up Laundry Logo" class="logo">
+      <h1>Wash-Up Laundry</h1>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#members">Members</a>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+      <div class="text-box">
+        <h2>Welcome to Wash-Up Laundry!</h2>
+        <p>We provide easy-access, affordable, and quality laundry services.</p>
+        <a href="#services" class="btn"><strong>See Our Services</strong></a>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services">
+      <h2>Our Services</h2>
+      <div class="service-list">
+        <div class="service-item">
+          <img src="wash&dry.png" alt="Wash & Dry Service">
+          <h3>Wash & Dry</h3>
+          <button>₱50 per kilo</button>
+        </div>
+        <div class="service-item">
+          <img src="fold.png" alt="Folding Service">
+          <h3>Fold</h3>
+          <button>₱10 per kilo</button>
+        </div>
+        <div class="service-item">
+          <img src="iron.png" alt="Ironing Service">
+          <h3>Ironing Service</h3>
+          <button>₱20 per kilo</button>
+        </div>
+        <div class="service-item">
+          <img src="service.png" alt="Pick-Up & Delivery Service">
+          <h3>Pick-Up & Delivery</h3>
+          <button>Available within<br>city limits</button>
+        </div>
+      </div>
+    </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="contact"> 
+        <h2>Contact Us</h2>
+        <p>Email: washuplaundry@gmail.com</p>
+      </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+      <div class="about-container">
+        <div class="aboutText">
+          <h2>About Us</h2>
+          <p>
+            Wash-Up Laundry is your friendly neighborhood laundry service.
+            We make your laundry simple, affordable, and hassle-free.
+          </p>
+          <p>
+            We offer fast wash & dry, folding, ironing, and even free pick-up
+            and delivery within the village. Our team takes pride in keeping
+            your clothes fresh and handled with care.
+          </p>
+          <p>
+            What are you waiting for? Click below to contact us for more info.
+          </p>
+          <a href="#contact" class="btn"><strong>Contact</strong></a>
+        </div>
+        <div class="about-img">
+          <img src="abt.png" alt="About Us Image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="members">
+      <h2>Members</h2>
+      <ul>
+        <li>Jesse Jay Fesico</li>
+        <li>Irvine Libres</li>
+        <li>Andrei Calabero</li>
+        <li>Charles Julian Ceniza</li>
+        <li>Daniela Tambong</li>
+        <li>Mivel Anne Darang</li>
+        <li>Philip John Letada</li>
+        <li>Carl Adrian Omnes</li>
+        <li>Jehaina Magarang</li>
+        <li>Ishiel May Manatad</li>
+        <li>Christ Canieso</li>
+      </ul>
+    </section>
+
+    <!--B A C K G R O U N D  M U S I C-->
+    <audio id="bg-music" loop>
+      <source src="Team Fortress 2 Soundtrack Upgrade Station.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Controls -->
+    <div style="margin-top: 20px;">
+      <button id="mute-button">🔇 Mute</button>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+    </div>
+
+    <script>
+      const audio = document.getElementById('bg-music');
+      const volumeSlider = document.getElementById('volume-slider');
+      const muteButton = document.getElementById('mute-button');
+
+      const savedVolume = localStorage.getItem('bgMusicVolume');
+      const savedMuted = localStorage.getItem('bgMusicMuted');
+
+      audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 1;
+      volumeSlider.value = audio.volume;
+
+      audio.muted = savedMuted === 'true';
+      muteButton.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+
+      window.addEventListener('DOMContentLoaded', () => {
+        document.body.addEventListener('click', () => {
+          audio.play().catch(e => console.log("Autoplay blocked:", e));
+        }, { once: true });
+      });
+
+      volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+        localStorage.setItem('bgMusicVolume', volumeSlider.value);
+      });
+
+      muteButton.addEventListener('click', () => {
+        audio.muted = !audio.muted;
+        localStorage.setItem('bgMusicMuted', audio.muted);
+        muteButton.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+      });
+    </script>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy; 2025 Wash-Up Laundry | All rights reserved.</p>
+    </footer>
+
+  </body>
+  </html>
